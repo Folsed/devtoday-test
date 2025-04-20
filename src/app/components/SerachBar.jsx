@@ -16,7 +16,7 @@ const SerachBar = () => {
 
     const linkToRecipes = () => {
         if (dropdownValue || inputValue || prepValue) {
-            return `/recipes?query=${inputValue}&cuisine=${dropdownValue}&maxReadyTime=${prepValue > 0 ? prepValue : ''}`;
+            return `/recipes?query=${inputValue}&cuisine=${dropdownValue}${prepValue > 0 ? `&maxReadyTime=${prepValue}` : ''}`;
         }
         return '/recipes';
     };

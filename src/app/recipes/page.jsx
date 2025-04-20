@@ -4,7 +4,7 @@ const RecipesPage = async ({ params, searchParams }) => {
     const { query, cuisine, maxReadyTime } = await searchParams;
 
     const res = await fetch(
-        `${process.env.API_ENDPOINT}?query=${query}&cuisine=${cuisine}&maxReadyTime=${maxReadyTime}`,
+        `${process.env.API_ENDPOINT}/complexSearch/?query=${query}&cuisine=${cuisine}&${maxReadyTime ? `maxReadyTime=${maxReadyTime}` : ''}`,
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -17,6 +17,8 @@ const RecipesPage = async ({ params, searchParams }) => {
     );
 
     const data = await res.json();
+    console.log(data);
+    
 
     return (
         <div>
