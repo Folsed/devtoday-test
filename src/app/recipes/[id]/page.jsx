@@ -16,10 +16,6 @@ const DetailsPage = async ({ params }) => {
 
     console.log(data);
 
-    return (
-        <div>
-            <Details detailsData={data} />
-        </div>
-    );
+    return <Details detailsData={data} />;
 };
 export default DetailsPage;
