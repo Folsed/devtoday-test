@@ -14,8 +14,6 @@ const DetailsPage = async ({ params }) => {
     });
     const data = await res.json();
 
-    console.log(data);
-
     return <Details detailsData={data} />;
 };
 export default DetailsPage;

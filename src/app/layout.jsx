@@ -1,5 +1,6 @@
 import { Rubik } from 'next/font/google';
 import './globals.css';
+import GoBackButton from '../UI/GoBackButton';
 
 const rubik = Rubik({
     subsets: ['latin'],
@@ -13,7 +14,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={`${rubik.className} antialiased`}>{children}</body>
+            <body className={`${rubik.className} antialiased`}>
+                <GoBackButton />
+                {children}
+            </body>
         </html>
     );
 }

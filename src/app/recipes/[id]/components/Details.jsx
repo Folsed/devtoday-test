@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const Details = ({ detailsData }) => {
     return (
-        <div className="p-4 max-w-2xl mx-auto bg-white shadow-md rounded-lg">
+        <div className="p-4 max-w-3xl mx-auto my-24 bg-white shadow-md rounded-lg">
             <h1 className="text-2xl font-bold mb-4">{detailsData.title}</h1>
             <Image
                 src={detailsData.image}
