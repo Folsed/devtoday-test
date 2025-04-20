@@ -45,6 +45,6 @@ pnpm dev
 bun dev
 ````
 
-![Alt text](/public/pic1.jpg 'Preview Image')
-![Alt text](/public/pic2.jpg 'Preview Image')
-![Alt text](/public/pic3.jpg 'Preview Image')
+![Alt text](/preview/pic1.jpg 'Preview Image')
+![Alt text](/preview/pic2.jpg 'Preview Image')
+![Alt text](/preview/pic3.jpg 'Preview Image')
