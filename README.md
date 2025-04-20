@@ -17,7 +17,7 @@ A web app built with **Next.js 15** for searching and exploring recipes using th
 ## 🧱 Tech Stack
 
 - [Next.js 15 (App Router)](https://nextjs.org/)
-- [React 18](https://reactjs.org/)
+- [React 19](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Spoonacular API](https://spoonacular.com/food-api)
 
