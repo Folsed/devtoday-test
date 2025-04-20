@@ -1,12 +1,13 @@
 import Catalog from './components/Catalog';
 
 const RecipesPage = async ({ searchParams }) => {
-    const { query = '', cuisine = '', maxReadyTime = '' } = await searchParams;
+    const { query = '', cuisine = '', maxReadyTime = 0 } = await searchParams;
 
     const params = new URLSearchParams();
     if (query) params.append('query', query);
     if (cuisine) params.append('cuisine', cuisine);
     if (maxReadyTime) params.append('maxReadyTime', maxReadyTime);
+    console.log(params.toString())
 
     const res = await fetch(`${process.env.API_ENDPOINT}/complexSearch?${params.toString()}`, {
         headers: {
@@ -20,9 +21,11 @@ const RecipesPage = async ({ searchParams }) => {
 
     const data = await res.json();
 
+    console.log(data);
+
     return (
         <div>
-            <Catalog catalogData={data.results} />
+            <Catalog catalogData={data} />
         </div>
     );
 };
