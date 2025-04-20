@@ -2,27 +2,36 @@
 
 import { useState } from 'react';
 import { dropdownItems } from './_dropdownItems';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-const SerachBar = () => {
+const SearchBar = () => {
     const [active, setActive] = useState(false);
     const [dropdownValue, setDropdownValue] = useState('');
     const [inputValue, setInputValue] = useState('');
     const [prepValue, setPrepValue] = useState(0);
+    const router = useRouter();
 
     const handleClick = () => {
         setActive(!active);
     };
 
     const linkToRecipes = () => {
-        if (dropdownValue || inputValue || prepValue) {
-            return `/recipes?query=${inputValue}&cuisine=${dropdownValue}${prepValue > 0 ? `&maxReadyTime=${prepValue}` : ''}`;
-        }
-        return '/recipes';
+        const params = new URLSearchParams();
+
+        if (inputValue) params.append('query', inputValue);
+        if (dropdownValue) params.append('cuisine', dropdownValue);
+        if (prepValue > 0) params.append('maxReadyTime', prepValue.toString());
+
+        return `/recipes?${params.toString()}`;
+    };
+
+    const handleSearch = e => {
+        e.preventDefault();
+        router.push(linkToRecipes());
     };
 
     return (
-        <form className="mx-auto">
+        <form className="mx-auto" onSubmit={handleSearch}>
             <div className="flex">
                 <button
                     className="shrink-0 w-48 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
@@ -74,26 +83,22 @@ const SerachBar = () => {
                         type="search"
                         className="block p-2.5 w-64 z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                         placeholder="Search..."
-                        required
                         value={inputValue}
                         onChange={e => setInputValue(e.target.value)}
                     />
-                    <Link href={linkToRecipes()}>
-                        <button
-                            type="submit"
-                            className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:dark:bg-gray-700"
-                            disabled={dropdownValue || inputValue || prepValue ? false : true}
-                        >
-                            <span className="">Next</span>
-                        </button>
-                    </Link>
+                    <button
+                        type="submit"
+                        className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:dark:bg-gray-700"
+                        disabled={dropdownValue || inputValue || prepValue ? false : true}
+                    >
+                        <span className="">Next</span>
+                    </button>
                 </div>
                 <div className="relative w-full">
                     <input
                         type="number"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-36 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Prep. time/mins"
-                        required
                         value={prepValue === 0 ? '' : prepValue}
                         onChange={e => setPrepValue(Number(e.target.value))}
                     />
@@ -102,4 +107,4 @@ const SerachBar = () => {
         </form>
     );
 };
-export default SerachBar;
+export default SearchBar;

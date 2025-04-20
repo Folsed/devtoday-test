@@ -1,11 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Card = ({ cardData }) => {
-    console.log(cardData);
-
     return (
-        <Link href={`recipes/${cardData.id}`} className="relative drop-shadow-xl w-48 h-64 overflow-hidden rounded-xl bg-[#3d3c3d]">
+        <Link
+            href={`recipes/${cardData.id}`}
+            className="relative drop-shadow-xl w-48 h-64 overflow-hidden rounded-xl bg-[#3d3c3d]"
+        >
             <Image
                 src={cardData.image}
                 alt={cardData.title}

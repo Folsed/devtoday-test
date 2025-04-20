@@ -1,9 +1,9 @@
-import SerachBar from './components/SerachBar';
+import SearchBar  from './components/SearchBar';
 
 export default function HomePage() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4">
-            <SerachBar />
+            <SearchBar  />
         </div>
     );
 }
